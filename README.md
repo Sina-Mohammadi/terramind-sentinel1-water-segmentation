@@ -47,13 +47,12 @@ The latest completed evaluation produced the following **held-out test** scores:
 |---|---:|
 | Mean Intersection over Union (mIoU) | **73.57%** |
 | Water IoU | **55.25%** |
-| F1 score (TerraTorch-reported) | **83.48%** |
-| Other-class IoU | 91.89% |
-| Boundary mIoU | 21.41% |
+| F1 score | **83.48%** |
+| Background (non-water) IoU | **91.89%** |
 
 The model was trained and evaluated on the Sen1Floods11 dataset using TerraTorch. The results above are from the completed **50-epoch fine-tuning experiment**, evaluated on the held-out test split using the checkpoint selected by the lowest validation loss. Model weights and downloaded data are excluded from this repository.
 
-Water IoU is lower than the overall mIoU, so the task remains challenging for the water class. An initial three-epoch experiment obtained **57.03% mIoU** and **36.49% water IoU**. This is a comparison across fine-tuning runs, **not** a comparison against a non-pretrained or frozen-encoder baseline.
+The background class is called `Other` in the training configuration and includes valid non-water pixels. Water IoU is lower than the overall mIoU, so the water class remains the more challenging one. Pixels marked `-1` in the labels are ignored rather than treated as background. An initial three-epoch experiment obtained **57.03% mIoU** and **36.49% water IoU**. This is a comparison across fine-tuning runs, **not** a comparison against a non-pretrained or frozen-encoder baseline.
 
 ## Setup and execution
 
